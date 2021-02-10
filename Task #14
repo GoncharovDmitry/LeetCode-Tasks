@@ -1,0 +1,53 @@
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+ 
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+ 
+
+Constraints:
+
+0 <= strs.length <= 200
+0 <= strs[i].length <= 200
+strs[i] consists of only lower-case English letters.
+
+
+class Solution {
+     func longestCommonPrefix(_ strs: [String]) -> String {
+         guard strs.count - 1 != 0 else { return strs[0] }
+        guard strs.count - 1 > 0 else { return "" }
+        
+         
+        var result = ""
+        var temp = ""
+        var flag = false
+
+        for charSeq in strs[0] {
+            temp += String(charSeq)
+            flag = false
+             for item in strs {
+                 if !item.starts(with: temp) {
+                    flag = false
+                     break
+                 }
+                 flag = true
+             }
+            if flag {
+                result += String(charSeq)
+            } else {
+                break
+            }
+        }
+        return result
+    }
+}
